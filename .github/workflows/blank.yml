@@ -58,3 +58,10 @@ jobs:
           echo "echoing as secret: ${{ secrets.othersecret }}" # doesn't work
           echo "echoing as env: ${{ env.othersecret }}" # works
           echo "echoing as step output: ${{ steps.getSecrets.outputs.othersecret }}" # works
+          
+          
+      - shell: bash
+        env:
+          SUPER_SECRET: ${{ secrets.othersecret }}
+        run: |
+          echo: "does this work: $SUPER_SECRET"
