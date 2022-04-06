@@ -53,5 +53,5 @@ jobs:
           secrets: '*'
           
       - run: |
-          echo ${{ secrets.othersecret }}
-          echo ${{ env.othersecret }}
+          echo "echoing as secret: ${{ secrets.othersecret }}"
+          echo "echoing as env: ${{ env.othersecret }}"
