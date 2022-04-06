@@ -53,7 +53,8 @@ jobs:
           # Name of the secret to be fetched
           secrets: '*'
           
-      - run: |
-          echo "echoing as secret: ${{ secrets.othersecret }}"
-          echo "echoing as env: ${{ env.othersecret }}"
-          echo "echoing as step output: ${{ steps.getSecrets.outputs.othersecret }}"
+      - name: testing secrets
+        run: |
+          echo "echoing as secret: ${{ secrets.othersecret }}" # doesn't work
+          echo "echoing as env: ${{ env.othersecret }}" # works
+          echo "echoing as step output: ${{ steps.getSecrets.outputs.othersecret }}" # works
