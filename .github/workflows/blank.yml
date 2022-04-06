@@ -64,4 +64,4 @@ jobs:
         env:
           SUPER_SECRET: ${{ secrets.othersecret }}
         run: |
-          echo: "does this work: $SUPER_SECRET"
+          echo "does this work: $SUPER_SECRET"
