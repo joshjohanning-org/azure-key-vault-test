@@ -45,6 +45,7 @@ jobs:
           subscription-id: 2e9bfb26-ca29-44f5-8920-72c1b0b37188
 
       - name: Azure key vault - Get Secrets
+        id: getSecrets
         uses: Azure/get-keyvault-secrets@v1
         with:
           # Name of the azure key vault
@@ -55,3 +56,4 @@ jobs:
       - run: |
           echo "echoing as secret: ${{ secrets.othersecret }}"
           echo "echoing as env: ${{ env.othersecret }}"
+          echo "echoing as step output: ${{ steps.getSecrets.outputs.othersecret }}"
