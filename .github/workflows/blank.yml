@@ -59,3 +59,5 @@ jobs:
           echo "echoing as secret: ${{ secrets.othersecret }}" # doesn't work
           echo "echoing as env: ${{ env.othersecret }}" # works
           echo "echoing as step output: ${{ steps.getSecrets.outputs.othersecret }}" # works
+
+# should be using az keyvault secret show and echo "::add-mask::{value}"
