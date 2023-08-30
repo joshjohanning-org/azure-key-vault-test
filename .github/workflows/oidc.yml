@@ -15,15 +15,7 @@ on:
 
 permissions:
   id-token: write # this is needed for oidc
-  contents: write
-  pull-requests: write 
-  packages: write
-  actions: write
-  checks: write
-  security-events: write
-  issues: write
-  deployments: write
-  statuses: write
+  contents: read # this is needed to clone repo
   
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
