@@ -37,14 +37,13 @@ jobs:
           tenant-id: e9846558-c4f0-4312-a89e-ebebe80779a1
           subscription-id: 2e9bfb26-ca29-44f5-8920-72c1b0b37188
 
-      # - name: Azure key vault - Get Secrets
-      #   id: getSecrets
-      #   uses: Azure/get-keyvault-secrets@v1
-      #   with:
-      #     # Name of the azure key vault
-      #     keyvault: azure-key-vault-test-jj
-      #     # Name of the secret to be fetched
-      #     secrets: '*'
+      - name: get all az keyvault secrets
+        run: |
+          for secret_name in $(az keyvault secret list --vault-name test-vault --query "[].{name:name}" --output tsv); do
+            secret_value=$(az keyvault secret show --vault-name "test-vault" --name $secret_name --query value -o tsv)
+            echo "::add-mask::$secret_value"
+            echo "$secret_name=$secret_value" >> $GITHUB_ENV
+          done
 
       - name: just show some sub stuff
         run: |
