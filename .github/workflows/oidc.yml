@@ -41,6 +41,7 @@ jobs:
         run: |
           for secret_name in $(az keyvault secret list --vault-name josh-key-vault-test --query "[].{name:name}" --output tsv); do
             secret_value=$(az keyvault secret show --vault-name "josh-key-vault-test" --name $secret_name --query value -o tsv)
+            echo "getting and masking $secret_name"
             echo "::add-mask::$secret_value"
             echo "$secret_name=$secret_value" >> $GITHUB_ENV
           done
